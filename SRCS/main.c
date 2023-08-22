@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 20:42:08 by mvenanci@st       #+#    #+#             */
-/*   Updated: 2023/08/17 17:35:48 by mgomez-g         ###   ########.fr       */
+/*   Created: 2023/08/22 10:01:27 by mgomez-g          #+#    #+#             */
+/*   Updated: 2023/08/22 11:41:29 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	ft_render(t_game *a)
 		y++;
 	}
 	printf("a\n");
-	mlx_put_image_to_window(a->mlx, a->windows, a->img_player, 0  * 32, 0 * 32);
+	mlx_put_image_to_window(a->mlx, a->windows, a->img_player, a->player_x  * 32, a->player_y * 32);
+	
 	return (0);
 }
 
@@ -48,6 +49,9 @@ int	ft_render(t_game *a)
 int	main(void)
 {
 	static t_game	a;
+
+	a.player_x = 2; // Coordenada X
+    a.player_y = 2; // Coordenada Y
 
 	a.map[0] = "1111111111";
 	a.map[1] = "1000000001";
@@ -62,8 +66,8 @@ int	main(void)
 	a.img_collectible =  mlx_xpm_file_to_image(a.mlx, "images/collectible.xpm", &a.width, &a.height);
 	a.img_player =  mlx_xpm_file_to_image(a.mlx, "images/player.xpm", &a.width, &a.height);
 	a.img_exit =  mlx_xpm_file_to_image(a.mlx, "images/exit.xpm", &a.width, &a.height);
-	mlx_hook(a.windows, 17, 0, (void *) handle_esc, &a);
-	mlx_key_hook(a.windows, (void *) handle_esc_key, &a);// Set up ESC key handling
+	mlx_hook(a.windows, 17, 0, (void *) handle_key, &a);//esto lo cambie de hanle_x a handle_key
+	mlx_key_hook(a.windows, (void *) handle_key, &a);// Key handling
 	mlx_loop_hook(a.mlx, ft_render, &a); 
 	mlx_loop(a.mlx);
 }
