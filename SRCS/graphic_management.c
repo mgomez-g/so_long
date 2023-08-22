@@ -6,7 +6,7 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:00:30 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 11:20:09 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:03:26 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void	move_player(t_game *game, int new_x, int new_y)
 	}
 }
 
-//void	handle_x(t_game *game)
-//{
-//	(void) game;
+void	handle_x(t_game *game)
+{
+	(void) game;
 //	printf("handle_x\n");
-//	exit(0);
-//}
+	exit(0);
+}
 
 void handle_key(int keycode, t_game *game)
 {
@@ -54,4 +54,7 @@ void handle_key(int keycode, t_game *game)
 		move_player(game, game->player_x - 1, game->player_y);
 	else if (keycode == 100) // Tecla D (derecha)
 		move_player(game, game->player_x + 1, game->player_y);
+	
+	mlx_clear_window(game->mlx, game->windows);
+	ft_render(game);
 }

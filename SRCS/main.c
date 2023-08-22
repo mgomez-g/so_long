@@ -6,7 +6,7 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:01:27 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 11:41:29 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:07:55 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(void)
 	a.img_collectible =  mlx_xpm_file_to_image(a.mlx, "images/collectible.xpm", &a.width, &a.height);
 	a.img_player =  mlx_xpm_file_to_image(a.mlx, "images/player.xpm", &a.width, &a.height);
 	a.img_exit =  mlx_xpm_file_to_image(a.mlx, "images/exit.xpm", &a.width, &a.height);
-	mlx_hook(a.windows, 17, 0, (void *) handle_key, &a);//esto lo cambie de hanle_x a handle_key
+	mlx_hook(a.windows, 17, 0, (void *) handle_x, &a);
 	mlx_key_hook(a.windows, (void *) handle_key, &a);// Key handling
 	mlx_loop_hook(a.mlx, ft_render, &a); 
 	mlx_loop(a.mlx);
