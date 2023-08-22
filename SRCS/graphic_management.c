@@ -6,11 +6,12 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:00:30 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 12:03:26 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:03:13 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../graphic_management.h"
+#include "get_next_line.h"
 
 // Declaración de la función ft_render
 int ft_render(t_game *a);
@@ -27,8 +28,12 @@ static void	move_player(t_game *game, int new_x, int new_y)
 		game->player_x = new_x;
 		game->player_y = new_y;
 		game->movements++;
-		mlx_clear_window(game->mlx, game->windows);
-		ft_render(game);
+		if (game->collected_objects == game->total_collectibles && game->map[game->player_y][game->player_x] == 'E')
+		{
+            printf("¡You Win!\n");
+            mlx_destroy_window(game->mlx, game->windows);
+            exit(0);
+        }
 	}
 }
 
@@ -57,4 +62,25 @@ void handle_key(int keycode, t_game *game)
 	
 	mlx_clear_window(game->mlx, game->windows);
 	ft_render(game);
+}
+
+int calcular_total_collectibles(char **map)
+{
+	int total_collectibles = 0; 
+
+	int y = 0;
+	while(map[y]) // Cambia "a->map[y]" a "map[y]"
+	{
+		int x = 0;
+		while(map[y][x])
+		{
+			if (map[y][x] == 'C')
+				total_collectibles++;
+			
+			x++; 
+		}
+		y++;
+	}
+
+	return total_collectibles; 
 }

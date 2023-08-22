@@ -30,7 +30,7 @@ struct s_game
 	void	*img_exit;
 	int 	width;
 	int		height;
-	char 	*map[6];
+	char 	**map;  // Cambio: Usar un arreglo de cadenas para el mapa
     
     int     player_x;    // Posición del jugador en el eje X
     int     player_y;    // Posición del jugador en el eje Y
@@ -39,9 +39,8 @@ struct s_game
 };
 
 
-
 void	handle_x(t_game *game);
-
 void handle_key(int keycode, t_game *game);
+// ... Otras declaraciones de funciones ...
 
 #endif
