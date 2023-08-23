@@ -2,6 +2,8 @@ NAME = so_long
 SRCS_DIR = SRCS
 OBJS_DIR = OBJS
 
+LIBFT_PATH = ./SRCS/libft
+
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(addprefix $(OBJS_DIR)/,$(notdir $(SRCS:.c=.o)))
 
@@ -16,15 +18,18 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
+	make -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 
 $(OBJS_DIR):
 	mkdir -p $@
 
 clean:
+	make fclean -C $(LIBFT_PATH)
 	rm -rf $(OBJS_DIR)
 
 fclean: clean
+	make fclean -C $(LIBFT_PATH)
 	rm -f $(NAME)
 
 re: fclean all

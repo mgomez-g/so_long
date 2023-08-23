@@ -6,13 +6,14 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:01:27 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 15:08:12 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:14:07 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_reader.h"
 #include "../graphic_management.h"
 #include "get_next_line.h"
+#include "libft/libft.h"
 
 int	ft_render(t_game *a)
 {

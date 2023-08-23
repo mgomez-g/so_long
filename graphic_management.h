@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <mlx.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct s_game	t_game;
 
@@ -36,11 +37,13 @@ struct s_game
     int     player_y;    // Posición del jugador en el eje Y
     int     movements;   // Número de movimientos del jugador
 	int		collected_objects; // Collectibles Collected
+	int		total_collectibles; 
 };
 
 
 void	handle_x(t_game *game);
 void handle_key(int keycode, t_game *game);
+int calcular_total_collectibles(char **map);
 // ... Otras declaraciones de funciones ...
 
 #endif
