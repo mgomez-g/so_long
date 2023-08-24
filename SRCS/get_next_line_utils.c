@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:27:09 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 13:28:19 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:12:55 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *line, char *buffer)
 	index2 = 0;
 	if (buffer[0] == 0)
 		return (0);
-	new_line = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
+	new_line = malloc(ft_strllen(line) + ft_strllen(buffer) + 1);
 	if (!new_line)
 		return (0);
 	while (line && line[index1])
@@ -39,7 +39,7 @@ char	*ft_strjoin(char *line, char *buffer)
 	return (new_line);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strllen(char *str)
 {
 	size_t	len;
 

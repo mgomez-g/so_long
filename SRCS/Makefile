@@ -2,7 +2,7 @@ NAME = so_long
 SRCS_DIR = SRCS
 OBJS_DIR = OBJS
 
-LIBFT_PATH = ./SRCS/libft
+LIBFT_PATH = ./libft
 
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(addprefix $(OBJS_DIR)/,$(notdir $(SRCS:.c=.o)))

@@ -6,11 +6,11 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:00:30 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/22 15:03:13 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:36:23 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../graphic_management.h"
+#include "graphic_management.h"
 #include "get_next_line.h"
 
 // Declaración de la función ft_render
