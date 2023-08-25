@@ -6,7 +6,7 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:00:30 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/24 10:36:23 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:37:56 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // Declaración de la función ft_render
 int ft_render(t_game *a);
 
-static void	move_player(t_game *game, int new_x, int new_y)
+void	move_player(t_game *game, int new_x, int new_y)
 {
 	if (game->map[new_y][new_x] != '1')
 	{
@@ -44,7 +44,7 @@ void	handle_x(t_game *game)
 	exit(0);
 }
 
-void handle_key(int keycode, t_game *game)
+int handle_key(int keycode, t_game *game)
 {
 	if (keycode == 65307) // Código de la tecla Esc
 	{
@@ -62,6 +62,7 @@ void handle_key(int keycode, t_game *game)
 	
 	mlx_clear_window(game->mlx, game->windows);
 	ft_render(game);
+	return (0);
 }
 
 int calcular_total_collectibles(char **map)

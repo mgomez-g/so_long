@@ -14,7 +14,7 @@
 # define GRAPHIC_MANAGEMENT_H
 
 #include <stdlib.h>
-#include <mlx.h>
+#include "../mlx_linux/mlx.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -40,10 +40,11 @@ struct s_game
 	int		total_collectibles; 
 };
 
-
+t_game	*infos(void);
 void	handle_x(t_game *game);
-void handle_key(int keycode, t_game *game);
+int 	handle_key(int keycode, t_game *game);
 int calcular_total_collectibles(char **map);
+void	move_player(t_game *game, int new_x, int new_y);
 // ... Otras declaraciones de funciones ...
 
 #endif
