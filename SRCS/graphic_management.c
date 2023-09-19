@@ -6,7 +6,7 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:00:30 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/13 14:38:36 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:49:02 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "get_next_line.h"
 
 // Declaración de la función ft_render
-int ft_render(t_game *a);
+int	ft_render(t_game *a);
 
 void	move_player(t_game *game, int new_x, int new_y)
 {
@@ -28,10 +28,11 @@ void	move_player(t_game *game, int new_x, int new_y)
 		game->player_x = new_x;
 		game->player_y = new_y;
 		game->movements++;
-		if (game->collected_objects == game->total_collectibles && game->map[game->player_y][game->player_x] == 'E')
+		if (game->collected_objects == game->total_collectibles 
+			&& game->map[game->player_y][game->player_x] == 'E')
 		{
-            printf("¡You Win!\n");
-            mlx_destroy_window(game->mlx, game->windows);
+        	printf("¡You Win!\n");
+        	mlx_destroy_window(game->mlx, game->windows);
             exit(0);
         }
 	}
@@ -40,7 +41,6 @@ void	move_player(t_game *game, int new_x, int new_y)
 void	handle_x(t_game *game)
 {
 	(void) game;
-//	printf("handle_x\n");
 	exit(0);
 }
 
@@ -59,21 +59,24 @@ int handle_key(int keycode, t_game *game)
 		move_player(game, game->player_x - 1, game->player_y);
 	else if (keycode == 100) // Tecla D (derecha)
 		move_player(game, game->player_x + 1, game->player_y);
-	
+	printf("movimientos realizados: %d\n\033c", game->movements);
 	mlx_clear_window(game->mlx, game->windows);
 	ft_render(game);
 	return (0);
 }
 
-int calcular_total_collectibles(char **map)
+int	calcular_total_collectibles(char **map)
 {
-	int total_collectibles = 0; 
+	int	total_collectibles;
+	int	y;
+	int	x;
 
-	int y = 0;
-	while(map[y]) // Cambia "a->map[y]" a "map[y]"
+	total_collectibles = 0;
+	y = 0;
+	while (map[y])
 	{
-		int x = 0;
-		while(map[y][x])
+		x = 0;
+		while (map[y][x])
 		{
 			if (map[y][x] == 'C')
 				total_collectibles++;
@@ -81,6 +84,5 @@ int calcular_total_collectibles(char **map)
 		}
 		y++;
 	}
-
-	return total_collectibles; 
+	return (total_collectibles); 
 }

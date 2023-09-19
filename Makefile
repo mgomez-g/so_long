@@ -10,7 +10,7 @@ SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS :=$(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
 INCLUDES = -Imlx_linux 
 

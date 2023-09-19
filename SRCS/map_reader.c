@@ -6,7 +6,7 @@
 /*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:53:25 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 18:30:41 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:42:36 by mgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ char	**read_map(const char *filename)
 
 	i = 0;
 	while ((line = get_next_line(fd))) // Lee cada línea del archivo nuevamente
-	{
-		map[i] = line; // Almacena la línea en la matriz
+	{// Devuelve NULL si no se pudo abrir el archivo
+		map[i] = line;
 		i++;
 	}
 	map[i] = NULL; // Agrega un marcador de final de matriz
