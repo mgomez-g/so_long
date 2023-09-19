@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_veryfier.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuelgomezgomez <manuelgomezgomez@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 09:32:10 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 19:05:53 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:44:17 by manuelgomez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,70 @@ bool	valid_walls(char **map, int rows)
 		i++;
 	}
 	return (true);
+}
+
+bool verify_map_characters(char **map)
+{
+    int	y;
+
+	y = 0;
+    while (map[y])
+    {
+        int x;
+		
+		x = 0;
+        while (map[y][x])
+        {
+            char c = map[y][x];
+            if (c != '1' && c != 'P' && c != '0' && c != 'C' \
+			&& c != 'E' && c != '\n')
+                return false;
+            x++;
+        }
+        y++;
+    }
+    return (true);
+}
+
+void flood_fill(t_game *game, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= infos()->width - 1 || y >= infos()->height - 1 \
+	|| game->map[y][x] == '1')
+	{
+		return ;
+	}
+	if (game->map[y][x] == 'E')
+	{
+		game->valid_path = true;
+	}
+	game->map[y][x] = '1';
+	flood_fill(game, x + 1, y);
+	flood_fill(game, x - 1, y);
+	flood_fill(game, x, y + 1);
+	flood_fill(game, x, y - 1);
+}
+
+char **duplicate_map(char **map, int rows, int cols)
+{
+	int		i;
+	char	**new_map;
+
+	i = 0;
+	printf("row: %i\n", rows);
+	new_map = malloc((rows + 1) * sizeof(char *));
+	if (!new_map)
+		exit(fprintf(stderr, "Error: Memory allocation failed.\n"));
+	while (i < rows)
+	{
+		new_map[i] = (char *)malloc((cols + 1) * sizeof(char));
+		if (!new_map[i])
+		{
+			fprintf(stderr, "Error: Memory allocation failed.\n");
+			exit(1);
+		}
+		strcpy(new_map[i], map[i]);
+		i++;
+	}
+	new_map[i] = NULL;
+	return (new_map);
 }

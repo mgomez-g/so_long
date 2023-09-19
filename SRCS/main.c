@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomez-g <mgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuelgomezgomez <manuelgomezgomez@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:01:27 by mgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 18:48:04 by mgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:37:40 by manuelgomez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 #include "graphic_management.h"
 #include "get_next_line.h"
 #include "libft/libft.h"
+
+void	find_p(t_game	*a)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (a->map[y])
+	{
+		x = 0;
+		while (a->map[y][x])
+		{
+			if (a->map[y][x] == 'P')
+			{
+				printf("\n x : %d | y : %d \n", x, y);
+				a->player_x = x;
+				a->player_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 int	ft_render(t_game *a)
 {
@@ -59,21 +84,24 @@ int	main(void)
 		fprintf(stderr, "Error al cargar el mapa");
 		return(1);
 	}
-	
-	for (int y = 0; a.map[y]; y++)
+	map = duplicate_map(a.map, infos()->height, infos()->width);
+	find_p(&a);
+	printf("%i %i\n", infos()->height, infos()->width);
+	a.valid_path = false;
+	flood_fill(&a, a.player_x, a.player_y);
+	if (a.valid_path == false)
 	{
-	for (int x = 0; a.map[y][x]; x++)
+		fprintf(stderr, "Error: No valid path in the map.\n");
+		free_map(map, infos()->height);
+		free_map(a.map, infos()->height);
+		exit(1);
+	}
+	a.map = map;
+	if (!verify_map_characters(a.map))
 	{
-		if (a.map[y][x] == 'P')
-		{
-			a.player_x = x;
-			a.player_y = y;
-			break;
-
-		}
-	}
-	}
-		
+		free_map(a.map, infos()->height);
+		return (1);
+	}	
 
 	a.mlx = mlx_init();
 	a.windows = mlx_new_window(a.mlx, infos()->width * 32, infos()->height * 32, "Game");

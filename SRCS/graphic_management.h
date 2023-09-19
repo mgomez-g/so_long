@@ -43,8 +43,9 @@ struct s_game
 t_game	*infos(void);
 void	handle_x(t_game *game);
 int 	handle_key(int keycode, t_game *game);
-int calcular_total_collectibles(char **map);
+int 	calcular_total_collectibles(char **map);
 void	move_player(t_game *game, int new_x, int new_y);
+void	find_p(t_game	*a)
 // ... Otras declaraciones de funciones ...
 
 #endif
